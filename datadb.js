@@ -1,3 +1,8 @@
+const { DateTime } = require('luxon');
+
+function runProgram() {
+  // TODO: Add your code here to run the program
+
 // Import the necessary libraries
 const request = require('request');
 const mysql = require('mysql');
@@ -43,7 +48,19 @@ request('http://api.openweathermap.org/data/2.5/onecall?lat=-1.252&lon=77.4977&e
    
   }
 });
+console.log('Running program...');
+}
 
+
+// Set a date and time for the next execution of the program
+const nextExecution = DateTime.local()
+  .set({ hour: 23, minute: 59, second: 0 });
+
+// Calculate the time in milliseconds until the next execution
+const delay = nextExecution - DateTime.local();
+
+// Schedule the program to run at the specified time
+setTimeout(runProgram, delay);
 
  // connection.query('INSERT INTO table_name SET ?', data, (error, result) => {
     //   if (error) {
